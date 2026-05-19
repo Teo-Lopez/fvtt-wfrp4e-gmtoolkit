@@ -4,9 +4,8 @@
   "description": "Utilities for WFRP4e GMs",
   "version": "v9.1.1",
   "compatibility": {
-    "minimum": "13",
-    "maximum": "13",
-    "verified": "13.346"
+    "minimum": "14",
+    "verified": "14.360"
   },
   "authors": [
     {
@@ -27,12 +26,8 @@
       }
     ]
   },
-  "esmodules": [
-    "wfrp4e-gm-toolkit.mjs"
-  ],
-  "styles": [
-    "/css/gmtoolkit.css"
-  ],
+  "esmodules": ["wfrp4e-gm-toolkit.mjs"],
+  "styles": ["/css/gmtoolkit.css"],
   "packs": [
     {
       "name": "gm-toolkit-macros",

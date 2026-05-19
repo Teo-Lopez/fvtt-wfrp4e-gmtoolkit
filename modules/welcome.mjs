@@ -13,7 +13,7 @@ export class GMToolkitWelcome {
       event.preventDefault()
       if (!game.user.isGM) return
 
-      switch ($(event.currentTarget).attr("data-button")) {
+      switch (event.currentTarget.dataset.button) {
         case "updateMacros":
           refreshToolkitContent("Macro")
           break

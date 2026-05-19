@@ -5,7 +5,7 @@
   "author": "k5y1jEYMBqd9uLUx",
   "img": "modules/wfrp4e-gm-toolkit/assets/icons/advantage-add.svg",
   "scope": "global",
-  "command": "game.gmtoolkit.advantage.update(token, \"increase\")\n\n/* ==========\n* MACRO: Add Advantage\n* VERSION: 0.9.5\n* UPDATED: 2022-08-04\n* DESCRIPTION: Increases Advantage for the selected token by 1.\n* TIP: Token must be added to an encounter in the Combat Tracker.\n* TIP: Caps at character's maximum advantage.\n========== */",
+  "command": "game.gmtoolkit.advantage.update(token, \"increase\")\r\n\r\n/* ==========\r\n* MACRO: Add Advantage\r\n* VERSION: 0.9.5\r\n* UPDATED: 2022-08-04\r\n* DESCRIPTION: Increases Advantage for the selected token by 1.\r\n* TIP: Token must be added to an encounter in the Combat Tracker.\r\n* TIP: Caps at character's maximum advantage.\r\n========== */\r\n",
   "folder": null,
   "sort": 500000,
   "flags": {
@@ -14,7 +14,7 @@
     }
   },
   "_stats": {
-    "coreVersion": "13.342",
+    "coreVersion": "14.360",
     "systemId": null,
     "systemVersion": null,
     "createdTime": null,

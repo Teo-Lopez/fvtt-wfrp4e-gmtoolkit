@@ -4,7 +4,7 @@
   "scope": "global",
   "author": "Yz8naH0UqWS3uLwh",
   "img": "modules/wfrp4e-gm-toolkit/assets/icons/deal-damage.svg",
-  "command": "new game.gmtoolkit.damage.launch().render(true)\n\n/* ==========\n * MACRO: Launch Damage Console\n * VERSION: 6.0.0\n * UPDATED: 2022-09-06\n * DESCRIPTION: Quickly deal damage to multiple actors\n * TIP: Set damage as either a whole number or a valid dice roll formula\n ========== */",
+  "command": "new game.gmtoolkit.damage.launch().render(true)\r\n\r\n/* ==========\r\n * MACRO: Damage Console\r\n * VERSION: 6.0.0\r\n * UPDATED: 2022-09-06\r\n * DESCRIPTION: Quickly deal damage to multiple actors\r\n * TIP: Set damage as either a whole number or a valid dice roll formula\r\n ========== */\r\n",
   "ownership": {
     "default": 0,
     "Yz8naH0UqWS3uLwh": 3
@@ -18,7 +18,7 @@
   "_stats": {
     "systemId": "wfrp4e",
     "systemVersion": "6.1.2",
-    "coreVersion": "13.342",
+    "coreVersion": "14.360",
     "createdTime": 1662044738596,
     "modifiedTime": 1747487611306,
     "lastModifiedBy": "doYSkxebQ4PJhL5x",

@@ -4,7 +4,7 @@
   "scope": "global",
   "author": "WpuDIfNQnefaTyuV",
   "img": "modules/wfrp4e-gm-toolkit/assets/icons/scale-map.svg",
-  "command": "const scale = 2 / canvas.scene.grid.distance;\nawait canvas.scene.update({\n  \"grid.distance\": 2,\n  \"grid.units\": \"yd\"\n});\nconst newLights = canvas.scene.lights.map(light => {\n  return {\n    _id: light.id,\n    \"config.dim\": light.config.dim * scale,\n    \"config.bright\": light.config.bright * scale\n  };\n});\nawait canvas.scene.updateEmbeddedDocuments(\"AmbientLight\", newLights);\n\n/* ==========\n* MACRO: Change scene to yards\n* VERSION: 6.0.3\n* UPDATED: 2023-03-08\n* DESCRIPTION: Change scene grid to 2 yards, keeping lighting at scale. Useful for maps created for DnD that have a grid of 5ft, or any other grid size.\n========== */",
+  "command": "const scale = 2 / canvas.scene.grid.distance\r\nawait canvas.scene.update({\r\n  \"grid.distance\": 2,\r\n  \"grid.units\": \"yd\"\r\n})\r\nconst newLights = canvas.scene.lights.map(light => ({\r\n  _id: light.id,\r\n  \"config.dim\": light.config.dim * scale,\r\n  \"config.bright\": light.config.bright * scale\r\n}))\r\nawait canvas.scene.updateEmbeddedDocuments(\"AmbientLight\", newLights)\r\n\r\n/* ==========\r\n* MACRO: Change scene to yards\r\n* VERSION: 6.0.3\r\n* UPDATED: 2023-03-08\r\n* DESCRIPTION: Change scene grid to 2 yards, keeping lighting at scale. Useful for maps created for DnD that have a grid of 5ft, or any other grid size.\r\n========== */\r\n",
   "ownership": {
     "default": 0,
     "WpuDIfNQnefaTyuV": 3
@@ -18,7 +18,7 @@
   "_stats": {
     "systemId": "wfrp4e",
     "systemVersion": "6.4.0",
-    "coreVersion": "13.342",
+    "coreVersion": "14.360",
     "createdTime": 1682374661491,
     "modifiedTime": 1747487611306,
     "lastModifiedBy": "doYSkxebQ4PJhL5x",

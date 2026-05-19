@@ -5,7 +5,7 @@
   "author": "WpuDIfNQnefaTyuV",
   "img": "modules/wfrp4e-gm-toolkit/assets/icons/toggle-scene-light.svg",
   "scope": "global",
-  "command": "let thisScene = game.scenes.viewed\nlet uiNotice = game.i18n.format(\"GMTOOLKIT.Message.UnexpectedNoChange\", {})\n\nawait thisScene.update( { tokenVision: !thisScene.tokenVision})\nawait thisScene.update( { globalLight: !thisScene.tokenVision})\n\nuiNotice = (thisScene.tokenVision) \n  ? game.i18n.format(\"GMTOOLKIT.Scene.TokenNotGlobal\", { sceneName: thisScene.name })\n  : game.i18n.format(\"GMTOOLKIT.Scene.GlobalNotToken\", { sceneName: thisScene.name })\n\nui.notifications.info(uiNotice, { console: false })\n\n/* ==========\n* MACRO: Toggle Scene Vision and Light\n* VERSION: 0.9.5\n* UPDATED: 2022-08-14\n* DESCRIPTION: Toggles the Token Vision and Global Illumination settings.\n* TIP: If Token Vision is set, Global Illumination is unset (and vice-versa).\n* TIP: Applies to the scene being viewed, which is not necessarily the active scene.\n========== */",
+  "command": "let thisScene = game.scenes.viewed\r\nlet uiNotice = game.i18n.format(\"GMTOOLKIT.Message.UnexpectedNoChange\", {})\r\n\r\nconst tokenVision = !thisScene.tokenVision\r\nawait thisScene.update({ tokenVision })\r\nawait thisScene.update({ \"environment.globalLight.enabled\": !tokenVision })\r\n\r\nuiNotice = (thisScene.tokenVision) \r\n  ? game.i18n.format(\"GMTOOLKIT.Scene.TokenNotGlobal\", { sceneName: thisScene.name })\r\n  : game.i18n.format(\"GMTOOLKIT.Scene.GlobalNotToken\", { sceneName: thisScene.name })\r\n\r\nui.notifications.info(uiNotice, { console: false })\r\n\r\n/* ==========\r\n* MACRO: Toggle Scene Vision and Light\r\n* VERSION: 0.9.5\r\n* UPDATED: 2022-08-14\r\n* DESCRIPTION: Toggles the Token Vision and Global Illumination settings.\r\n* TIP: If Token Vision is set, Global Illumination is unset (and vice-versa).\r\n* TIP: Applies to the scene being viewed, which is not necessarily the active scene.\r\n========== */\r\n",
   "folder": null,
   "sort": 700000,
   "flags": {
@@ -23,7 +23,7 @@
   "_stats": {
     "systemId": "wfrp4e",
     "systemVersion": "6.0.0",
-    "coreVersion": "13.342",
+    "coreVersion": "14.360",
     "createdTime": null,
     "modifiedTime": 1747487611306,
     "lastModifiedBy": "doYSkxebQ4PJhL5x",

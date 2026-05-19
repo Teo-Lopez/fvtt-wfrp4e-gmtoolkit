@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.  The format
 
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
+- *Added* Foundry VTT v14 compatibility (minimum core version 14). Requires a clean v14 install; worlds are not compatible with v13.
+- *Changed* Apply Basic Damage macro to use DialogV2.
+- *Changed* Token HUD extensions and related hooks to use native DOM APIs instead of jQuery.
+- *Changed* Toggle Scene Vision and Light macro to update `environment.globalLight.enabled` (v14 scene data model).
+- *Changed* Toggle Compendium Pack Visibility macro to drop legacy v10/v11 code paths.
 - *Changed* Check Conditions macro [#344](https://github.com/Jagusti/fvtt-wfrp4e-gmtoolkit/pull/344) to
   - not prompt for Stunned condition checks. This is [now handled](https://redirect.github.com/moo-man/WFRP4e-FoundryVTT/pull/2507) by the system. 
   - report success and failure context in condition test results.

@@ -1,8 +1,9 @@
 let thisScene = game.scenes.viewed
 let uiNotice = game.i18n.format("GMTOOLKIT.Message.UnexpectedNoChange", {})
 
-await thisScene.update( { tokenVision: !thisScene.tokenVision})
-await thisScene.update( { globalLight: !thisScene.tokenVision})
+const tokenVision = !thisScene.tokenVision
+await thisScene.update({ tokenVision })
+await thisScene.update({ "environment.globalLight.enabled": !tokenVision })
 
 uiNotice = (thisScene.tokenVision) 
   ? game.i18n.format("GMTOOLKIT.Scene.TokenNotGlobal", { sceneName: thisScene.name })

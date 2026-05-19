@@ -2,6 +2,12 @@
 import GMToolkit from "./gm-toolkit.mjs"
 import { hasSkill, adjustStatus } from "./utility.mjs"
 
+function createElementFromHTML (htmlString) {
+  const template = document.createElement("template")
+  template.innerHTML = htmlString.trim()
+  return template.content.firstChild
+}
+
 export default class TokenHudExtension {
 
   static async addTokenHudExtensions (app, html, data) {
@@ -21,14 +27,15 @@ export default class TokenHudExtension {
   static async addHudContainer (app, html, data) {
     // Add Extension Container
     const divTokenHudExt = '<div class="tokenHudContainer"></div>'
-    html.find(".col.left").before(divTokenHudExt)
+    html.querySelector(".col.left")?.insertAdjacentHTML("beforebegin", divTokenHudExt)
 
     // Add Extension columns
     const hudExtensionColumnInner = '<div class="col tokenHudColumn" id="hudLeftInner"></div>'
     const hudExtensionColumnOuter = '<div class="col tokenHudColumn" id="hudLeftOuter"></div>'
 
-    html.find(".tokenHudContainer").prepend(hudExtensionColumnOuter)
-    html.find(".tokenHudContainer").prepend(hudExtensionColumnInner)
+    const container = html.querySelector(".tokenHudContainer")
+    container?.prepend(createElementFromHTML(hudExtensionColumnOuter))
+    container?.prepend(createElementFromHTML(hudExtensionColumnInner))
   }
 
   static async addMovementTokenTip (app, html, data, actor) {
@@ -45,11 +52,11 @@ export default class TokenHudExtension {
       TooltipMovement += `; ${game.i18n.localize("Walk")}: ${walk}; ${game.i18n.localize("Run")}: ${run}; ${game.i18n.localize("Swim")}: ${swim}`
       displayedMovement = run
     }
-    const hudMovement = $(`<div class="control-icon tokenhudicon left" id="movement" title="${TooltipMovement}"><i class="fas ${movementIcon}"><span class="tokenhudext">&nbsp;${displayedMovement}</span></i></div>`)
-    html.find('[id = "hudLeftInner"]').prepend(hudMovement)// Add Movement token tip
+    const hudMovement = createElementFromHTML(`<div class="control-icon tokenhudicon left" id="movement" title="${TooltipMovement}"><i class="fas ${movementIcon}"><span class="tokenhudext">&nbsp;${displayedMovement}</span></i></div>`)
+    html.querySelector("#hudLeftInner")?.prepend(hudMovement)
 
     // Add interactions for Movement
-    hudMovement.find("i").dblclick(async ev => {
+    hudMovement.querySelector("i")?.addEventListener("dblclick", async ev => {
       if (actor.type === "vehicle") return
       GMToolkit.log(false, "Movement hud extension double-clicked.")
       if (ev.altKey && ev.shiftKey && ev.ctrlKey) {
@@ -138,11 +145,11 @@ export default class TokenHudExtension {
     const initiative = actorCharacteristics.i.value
     const agility = actorCharacteristics.ag.value
     const TooltipInitiative = `${game.i18n.localize("CHAR.I")}: ${initiative}; ${game.i18n.localize("CHAR.Ag")}: ${agility}`
-    const hudInitiative = $(`<div class="control-icon tokenhudicon left" id="initiative" title="${TooltipInitiative}"><i class="fas fa-spinner"><span class="tokenhudext">&nbsp;${initiative}</span></i></div>`)
-    html.find('[id = "hudLeftInner"]').prepend(hudInitiative)  // Add Initiative and Agility token tip
+    const hudInitiative = createElementFromHTML(`<div class="control-icon tokenhudicon left" id="initiative" title="${TooltipInitiative}"><i class="fas fa-spinner"><span class="tokenhudext">&nbsp;${initiative}</span></i></div>`)
+    html.querySelector("#hudLeftInner")?.prepend(hudInitiative)
 
     // Add interactions for Initiative and Agility
-    hudInitiative.find("i").dblclick(async ev => {
+    hudInitiative.querySelector("i")?.addEventListener("dblclick", async ev => {
       GMToolkit.log(false, "Initiative hud extension double-clicked.")
       if (ev.ctrlKey && ev.shiftKey) {
         const skill = hasSkill(actor, `${game.i18n.localize("NAME.Track")}`)
@@ -197,11 +204,11 @@ export default class TokenHudExtension {
       const divTokenHudExt = '<div class="tokenhudext left">'
 
       // Resolve and Resilience
-      const hudResolve = $(`<div class="control-icon tokenhudicon left" id="resolve" title="${TooltipResolve}"><i class="fas fa-hand-rock"><span class="tokenhudext">&nbsp;${resolve}</span></i></div>`)
-      html.find('[id = "hudLeftOuter"]').prepend(hudResolve)// Add Resolve token tip
+      const hudResolve = createElementFromHTML(`<div class="control-icon tokenhudicon left" id="resolve" title="${TooltipResolve}"><i class="fas fa-hand-rock"><span class="tokenhudext">&nbsp;${resolve}</span></i></div>`)
+      html.querySelector("#hudLeftOuter")?.prepend(hudResolve)
 
       // Add interactions for Resolve and Resilience
-      hudResolve.find("i").contextmenu(async ev => {
+      hudResolve.querySelector("i")?.addEventListener("contextmenu", async ev => {
         GMToolkit.log(false, "Resolve hud extension right-clicked.")
         if (ev.ctrlKey) {
           const result = await adjustStatus(actor, "Resolve", -1)
@@ -218,7 +225,7 @@ export default class TokenHudExtension {
           return
         }
       })
-      hudResolve.find("i").dblclick(async ev => {
+      hudResolve.querySelector("i")?.addEventListener("dblclick", async ev => {
         GMToolkit.log(false, "Resolve hud extension double-clicked.")
         if (ev.ctrlKey) {
           const skill = hasSkill(actor, `${game.i18n.localize("NAME.Cool")}`)
@@ -253,10 +260,10 @@ export default class TokenHudExtension {
       })
 
       // Fortune and Fate
-      const hudFortune = $(`<div class="control-icon tokenhudicon left" id="fortune" title="${TooltipFortune}"><i class="fas fa-dice"><span class="tokenhudext">&nbsp;${fortune}</span></i></div>`)
-      html.find('[id = "hudLeftOuter"]').append(hudFortune)// Add Fortune token tip
+      const hudFortune = createElementFromHTML(`<div class="control-icon tokenhudicon left" id="fortune" title="${TooltipFortune}"><i class="fas fa-dice"><span class="tokenhudext">&nbsp;${fortune}</span></i></div>`)
+      html.querySelector("#hudLeftOuter")?.append(hudFortune)
       // Add interactions for Fortune and Fate
-      hudFortune.find("i").contextmenu(async ev => {
+      hudFortune.querySelector("i")?.addEventListener("contextmenu", async ev => {
         GMToolkit.log(false, "Fortune hud extension right-clicked.")
         if (ev.ctrlKey) {
           const result = await adjustStatus(actor, "Fortune", -1)
@@ -273,7 +280,7 @@ export default class TokenHudExtension {
           return
         }
       })
-      hudFortune.find("i").dblclick(async ev => {
+      hudFortune.querySelector("i")?.addEventListener("dblclick", async ev => {
         GMToolkit.log(false, "Fortune hud extension double-clicked.")
         if (ev.shiftKey && ev.altKey) {
           const skill = hasSkill(actor, `${game.i18n.localize("NAME.CharmAnimal")}`)
@@ -320,11 +327,11 @@ export default class TokenHudExtension {
 
       // Corruption, Sin, Perception, Intuition
       // Corruption and Sin
-      const hudCorruption = $(`<div class="control-icon tokenhudicon left" id="corruption" title="${TooltipCorruption}"><i class="fas fa-bahai"><span class="tokenhudext">&nbsp;${corruption}</span></i></div>`)
-      html.find('[id = "hudLeftOuter"]').prepend(hudCorruption)// Add Corruption token tip
+      const hudCorruption = createElementFromHTML(`<div class="control-icon tokenhudicon left" id="corruption" title="${TooltipCorruption}"><i class="fas fa-bahai"><span class="tokenhudext">&nbsp;${corruption}</span></i></div>`)
+      html.querySelector("#hudLeftOuter")?.prepend(hudCorruption)
 
       // Add interactions for Corruption and Sin
-      hudCorruption.find("i").contextmenu(async ev => {
+      hudCorruption.querySelector("i")?.addEventListener("contextmenu", async ev => {
         GMToolkit.log(false, "Corruption hud extension right-clicked.")
         if (ev.ctrlKey && ev.altKey) {
           const result = await adjustStatus(actor, "Sin", -1)
@@ -355,7 +362,7 @@ export default class TokenHudExtension {
           return
         }
       })
-      hudCorruption.find("i").dblclick(async ev => {
+      hudCorruption.querySelector("i")?.addEventListener("dblclick", async ev => {
         GMToolkit.log(false, "Corruption hud extension double-clicked.")
         if (ev.ctrlKey && ev.altKey) {
           const littlePrayer = await new Roll("d100").roll({ async: true })
@@ -412,11 +419,11 @@ export default class TokenHudExtension {
       })
 
       // Perception and Intuition
-      const hudPerception = $(`<div class="control-icon tokenhudicon left" id="perception" title="${TooltipPerception}"><i class="fas fa-eye"><span class="tokenhudext">&nbsp;${perception}</span></i></div>`)
-      html.find('[id = "hudLeftInner"]').append(hudPerception)// Add Perception token tip
+      const hudPerception = createElementFromHTML(`<div class="control-icon tokenhudicon left" id="perception" title="${TooltipPerception}"><i class="fas fa-eye"><span class="tokenhudext">&nbsp;${perception}</span></i></div>`)
+      html.querySelector("#hudLeftInner")?.append(hudPerception)
 
       // Add interactions for Perception and Intuition
-      hudPerception.find("i").dblclick(async ev => {
+      hudPerception.querySelector("i")?.addEventListener("dblclick", async ev => {
         GMToolkit.log(false, "Perception hud extension double-clicked.")
         if (ev.altKey) {
           const skill = hasSkill(actor, `${game.i18n.localize("NAME.Intuition")}`)
