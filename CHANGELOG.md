@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.  The format
 ## Unreleased
 See [Issue Backlog](../../issues) and [Roadmap](../../milestones).
 
+## [Version 9.2.2](https://github.com/Teo-Lopez/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.2.2)  (2026-05-26)
+- *Fixed* canvas freeze when moving tokens without a linked actor on gridless scenes (workaround for WFRP4e `TokenRulerWFRP._getSegmentStyle` null actor bug).
+
 ## [Version 9.2.0](https://github.com/Teo-Lopez/fvtt-wfrp4e-gmtoolkit/releases/tag/v9.2.0)  (2026-05-19)
 - *Added* Foundry VTT v14 compatibility (minimum core version 14). Requires a clean v14 install; worlds are not compatible with v13.
 - *Changed* Apply Basic Damage macro to use DialogV2.

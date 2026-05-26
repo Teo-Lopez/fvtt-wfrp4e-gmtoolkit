@@ -2,7 +2,14 @@
   "engines": {
     "node": ">=24.13.1 <25"
   },
+  "scripts": {
+    "sync-packs": "node sync-packs.mjs",
+    "pack": "py -3 pack_util.py pack",
+    "build": "npm run sync-packs && npm run pack",
+    "zip": "node build-release.mjs"
+  },
   "devDependencies": {
+    "@foundryvtt/foundryvtt-cli": "^1.0.4",
     "@babel/core": "^7.22.20",
     "@babel/eslint-parser": "^7.22.15",
     "eslint": "^8.49.0",
